@@ -39,6 +39,7 @@ public class TS3Config {
 	private int commandTimeout = 4000;
 	private ReconnectStrategy reconnectStrategy = ReconnectStrategy.disconnect();
 	private ConnectionHandler connectionHandler = null;
+	private boolean enableClientInfoCaching = false;
 
 	public TS3Config setHost(String host) {
 		this.host = host;
@@ -91,6 +92,27 @@ public class TS3Config {
 
 	boolean getEnableCommunicationsLogging() {
 		return enableCommunicationsLogging;
+	}
+
+	/**
+	 * Setting this value to {@code true} will cache connecting Clients' Info.
+	 * <p>
+	 * By default, this is turned off to prevent big data storages, it should be
+	 * enabled if it needed. (Eg. you need clientinfo of just disconnected clients)
+	 * </p>
+	 *
+	 * @param enable
+	 * 		whether to cache ClientInfo of connecting clients
+	 *
+	 * @return this TS3Config object for chaining
+	 */
+	public TS3Config setEnableClientInfoCaching(boolean enable) {
+		enableClientInfoCaching = enable;
+		return this;
+	}
+
+	boolean getEnableClientInfoCaching() {
+		return enableClientInfoCaching;
 	}
 
 	/**
